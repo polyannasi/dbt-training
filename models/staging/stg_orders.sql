@@ -16,7 +16,9 @@ SELECT
     p.productid,
     p.category,
     p.productname,
-    p.subcategory
+    p.subcategory,
+    {{ markup('ordersellingprice', 'ordercostprice') }} AS markup
 FROM {{ ref('raw_orders') }} o
 LEFT JOIN {{ ref('raw_customer') }} c ON o.customerid=c.customerid
 LEFT JOIN {{ ref('raw_product') }} p ON o.productid=p.productid
+-- {{limit_data('orderdate')}}
